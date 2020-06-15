@@ -1,8 +1,10 @@
-from flask import Blueprint
+from flask import Blueprint, render_template, request, session
+from .ItemDetails import Item
 
-bp = Blueprint('main', __name__)
 
+mainbp = Blueprint('main', __name__)
 
-@bp.route('/')
+@mainbp.route('/') 
 def index():
-    return '<h1>Starter code for the assessment<h1>'
+    items = Item.query.all()
+    return render_template('index.html',  items=items)
